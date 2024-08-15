@@ -12,6 +12,8 @@ function Book(title,author,pages,readStatus){
 }
 
 function addBookToLibrary(title,author,pages,readStatus){
+  myLibrary.push(new Book(title, author,pages,readStatus))
+  listOutLibrary(myLibrary);
 
 }
 
@@ -31,9 +33,9 @@ listOutLibrary(myLibrary);
 const dialog = document.querySelector("dialog");
 const showBtn = document.querySelector(".show-dialog-btn");
 const output = document.querySelector("output");
-const closeBtn = dialog.querySelector(".close-btn");
+const closeBtn = document.querySelector(".close-btn");
 const submitBtn = document.querySelector(".submit-btn");
-const bookNameInput = dialog.querySelector(".book_name_input")
+const form = document.querySelector("form");
 
 
 
@@ -41,15 +43,22 @@ const bookNameInput = dialog.querySelector(".book_name_input")
     dialog.showModal();
   });
 
-  submitBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    dialog.close();
-    output.innerHTML = bookNameInput.value
-  });
 
 
-  closeBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    dialog.close();
-  
+  form.addEventListener("submit",(event) => {
+    event.preventDefault();
+    const formData = new FormData(form);
+    addBookToLibrary(formData.get("book_name"),formData.get("author_name"),formData.get("pages_number"),formData.get("read_status"));
+  dialog.close();
+
+
   })
+  
+
+
+
+  closeBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    dialog.close();
+  })
+
