@@ -30,10 +30,10 @@ listOutLibrary(myLibrary);
 //modal test
 const dialog = document.querySelector("dialog");
 const showBtn = document.querySelector(".show-dialog-btn");
-const closeBtn = document.querySelector(".close-btn");
+const output = document.querySelector("output");
+const closeBtn = dialog.querySelector(".close-btn");
 const submitBtn = document.querySelector(".submit-btn");
-const bookPHolder = document.querySelector(".book_p_holder");
-const bookNameInput = document.querySelector(".book_name_input")
+const bookNameInput = dialog.querySelector(".book_name_input")
 
 
 
@@ -41,12 +41,15 @@ const bookNameInput = document.querySelector(".book_name_input")
     dialog.showModal();
   });
 
-  submitBtn.addEventListener("click", () => {
-    bookPHolder.value = favDialog.returnValue;
-
-  })
-  
-  closeBtn.addEventListener("click", () => {
+  submitBtn.addEventListener("click", (e) => {
+    e.preventDefault();
     dialog.close();
+    output.innerHTML = bookNameInput.value
   });
+
+
+  closeBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    dialog.close();
   
+  })
