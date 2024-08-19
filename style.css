@@ -11,8 +11,16 @@ html, body {
 
 .top-main-div{
   height: 50%;
+  display: grid;
+  grid-template: 1fr / 1fr 1fr 1fr 1fr 1fr;
 }
+
 
 .bottom-main-div{
   height: 50%;
 }
+
+.book-div{
+
+}
+
