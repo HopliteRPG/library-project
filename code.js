@@ -1,8 +1,8 @@
 //Making Book Code
 
-//Add delete button
-const topMainDiv = document.querySelector(".top-main-div");
+//Declare Variables
 
+const topMainDiv = document.querySelector(".top-main-div");
 
 const bookHtml = document.createElement("div");
 bookHtml.classList.add("book-div");
@@ -19,15 +19,14 @@ bookPagesP.classList.add("bookPagesP");
 const bookReadP = document.createElement("p");
 bookReadP.classList.add("bookReadP");
 
+const deleteBookButton = document.createElement("button");
 
 
 
 
 
 
-/////////////////////////
-let myLibrary = [];
-
+//Book Object Constructor
 
 function Book(title,author,pages,readStatus){
     this.title = title;
@@ -36,10 +35,9 @@ function Book(title,author,pages,readStatus){
     this.readStatus = readStatus;
 }
 
+//Adds a Book to library
 function addBookToLibrary(title,author,pages,readStatus){
-  myLibrary.push(new Book(title, author,pages,readStatus))
-  listOutLibrary(myLibrary);
-
+  //Declaring Clone Variables
     const cloneBookHtml = bookHtml.cloneNode(true);
   
     const cloneBookNameP = bookNameP.cloneNode(true);
@@ -49,9 +47,12 @@ function addBookToLibrary(title,author,pages,readStatus){
     const cloneBookPagesP = bookPagesP.cloneNode(true);
   
     const cloneBookReadP = bookReadP.cloneNode(true);
+
+    const cloneDeleteBookButton = deleteBookButton.cloneNode(true);
+
     
   
-  
+  //Adds clone book and clone variables to topMainDiv
     topMainDiv.appendChild(cloneBookHtml);
   
     cloneBookHtml.appendChild(cloneBookNameP);
@@ -70,15 +71,23 @@ function addBookToLibrary(title,author,pages,readStatus){
   
     cloneBookReadP.textContent = readStatus;
   
-  
+    let numb = document.getElementsByClassName("book-div").length;
+
+    console.log(numb);
+
+    //Delete button 
+    cloneBookHtml.appendChild(cloneDeleteBookButton);
+    cloneDeleteBookButton.innerText = "Clone Delete";
+    cloneDeleteBookButton.classList.add("delete-book-button");
+
+    cloneDeleteBookButton.addEventListener("click", () =>{
+      //remove button deletes last child
+      topMainDiv.removeChild(topMainDiv.lastChild);
+      console.log("deletes last child")
+    })
   }
 
 
-function listOutLibrary(library){
-    library.forEach(book => {
-        console.log(book)
-    });
-}
 
 
 //Dialong and Modal Code 
