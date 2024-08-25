@@ -21,6 +21,8 @@ bookReadP.classList.add("bookReadP");
 
 const deleteBookButton = document.createElement("button");
 
+let idBookNumber = 0;
+
 
 
 
@@ -70,10 +72,13 @@ function addBookToLibrary(title,author,pages,readStatus){
     cloneBookHtml.appendChild(cloneBookReadP);
   
     cloneBookReadP.textContent = readStatus;
-  
-    let numb = document.getElementsByClassName("book-div").length;
 
-    console.log(numb);
+    //Adding Id
+    cloneBookHtml.setAttribute("id", idBookNumber);
+    idBookNumber++;
+
+    console.log(cloneBookHtml.id)
+
 
     //Delete button 
     cloneBookHtml.appendChild(cloneDeleteBookButton);
@@ -81,9 +86,9 @@ function addBookToLibrary(title,author,pages,readStatus){
     cloneDeleteBookButton.classList.add("delete-book-button");
 
     cloneDeleteBookButton.addEventListener("click", () =>{
-      //remove button deletes last child
-      topMainDiv.removeChild(topMainDiv.lastChild);
-      console.log("deletes last child")
+      let tempIdHolder = document.getElementById(cloneBookHtml.id)
+      console.log(cloneBookHtml.id)
+      tempIdHolder.remove();
     })
   }
 
