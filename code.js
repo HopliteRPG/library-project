@@ -19,6 +19,7 @@ bookPagesP.classList.add("bookPagesP");
 const bookReadP = document.createElement("p");
 bookReadP.classList.add("bookReadP");
 
+
 const deleteBookButton = document.createElement("button");
 
 let idBookNumber = 0;
