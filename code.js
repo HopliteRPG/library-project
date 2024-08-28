@@ -38,6 +38,19 @@ function Book(title,author,pages,readStatus){
     this.readStatus = readStatus;
 }
 
+//If its on it displays Read if not it displays Not Read
+function readOrNot(readStatus){
+    if (readStatus === "on"){
+      return "Read"
+    }
+
+    else {
+      return "Not Read"
+    }
+  };
+
+
+
 //Adds a Book to library
 function addBookToLibrary(title,author,pages,readStatus){
   //Declaring Clone Variables
@@ -72,7 +85,9 @@ function addBookToLibrary(title,author,pages,readStatus){
   
     cloneBookHtml.appendChild(cloneBookReadP);
   
-    cloneBookReadP.textContent = readStatus;
+    cloneBookReadP.textContent = readOrNot(readStatus)
+
+
 
     //Adding Id
     cloneBookHtml.setAttribute("id", idBookNumber);
