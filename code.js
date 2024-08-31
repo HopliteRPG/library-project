@@ -22,6 +22,8 @@ bookReadP.classList.add("bookReadP");
 
 const deleteBookButton = document.createElement("button");
 
+let myLibrary = [];
+
 let idBookNumber = 0;
 
 
@@ -52,7 +54,15 @@ function readOrNot(readStatus){
 
 
 //Adds a Book to library
-function addBookToLibrary(title,author,pages,readStatus){
+function addBookToLibrary(tempBook){
+  
+  //Adding tempBookObj to array
+  myLibrary.push(tempBook);
+  console.log(myLibrary);
+
+
+
+
   //Declaring Clone Variables
     const cloneBookHtml = bookHtml.cloneNode(true);
   
@@ -73,19 +83,19 @@ function addBookToLibrary(title,author,pages,readStatus){
   
     cloneBookHtml.appendChild(cloneBookNameP);
   
-    cloneBookNameP.textContent = title;
+    cloneBookNameP.textContent = tempBook.title;
   
     cloneBookHtml.appendChild(cloneBookAuthorP);
   
-    cloneBookAuthorP.textContent = author;
+    cloneBookAuthorP.textContent = tempBook.author;
   
     cloneBookHtml.appendChild(cloneBookPagesP);
   
-    cloneBookPagesP.textContent = pages;
+    cloneBookPagesP.textContent = tempBook.pages;
   
     cloneBookHtml.appendChild(cloneBookReadP);
   
-    cloneBookReadP.textContent = readOrNot(readStatus)
+    cloneBookReadP.textContent = readOrNot(tempBook.readStatus)
 
 
 
@@ -130,8 +140,7 @@ function addBookToLibrary(title,author,pages,readStatus){
   form.addEventListener("submit",(event) => {
     event.preventDefault();
     const formData = new FormData(form);
-    addBookToLibrary(formData.get("book_name"),formData.get("author_name"),formData.get("pages_number"),formData.get("read_status"));
-
+    addBookToLibrary(new Book(formData.get("book_name"),formData.get("author_name"),formData.get("pages_number"),formData.get("read_status")));
     dialog.close();
   });
   
