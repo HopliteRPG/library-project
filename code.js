@@ -39,11 +39,12 @@ let idBookNumber = 0;
 
 //Book Object Constructor
 
-function Book(title,author,pages,readStatus){
+function Book(title,author,pages,readStatus,id){
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.readStatus = readStatus;
+    this.id = id;
 }
 
 //If its on it displays Read if not it displays Not Read
@@ -111,6 +112,8 @@ function addBookToLibrary(tempBook){
   
     cloneBookReadP.textContent = tempBook.readStatus;
 
+    tempBook.id = idBookNumber;
+
 
 
 
@@ -143,6 +146,15 @@ function addBookToLibrary(tempBook){
       let tempIdHolder = document.getElementById(cloneBookHtml.id)
       console.log(cloneBookHtml.id)
       tempIdHolder.remove();
+
+      const indexOfBook = myLibrary.findIndex(book => {
+        return book.id === cloneBookHtml.id;
+      });
+
+      myLibrary.splice(indexOfBook, 1)
+
+      console.log(myLibrary)
+
     })
   }
 
