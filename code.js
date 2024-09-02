@@ -16,8 +16,14 @@ bookAuthorP.classList.add("bookAuthorP");
 const bookPagesP = document.createElement("p");
 bookPagesP.classList.add("bookPagesP");
 
+const bookReadCheckbox = document.createElement("input");
+bookReadCheckbox.setAttribute("type", "checkbox");
+bookReadCheckbox.classList.add("bookReadCheckbox");
+
 const bookReadP = document.createElement("p");
 bookReadP.classList.add("bookReadP");
+
+
 
 
 const deleteBookButton = document.createElement("button");
@@ -41,8 +47,9 @@ function Book(title,author,pages,readStatus){
 }
 
 //If its on it displays Read if not it displays Not Read
-function readOrNot(readStatus){
+function readOrNot(readStatus,cloneBookReadCheckbox){
     if (readStatus === "on"){
+      cloneBookReadCheckbox.checked = true;
       return "Read"
     }
 
@@ -63,6 +70,8 @@ function addBookToLibrary(tempBook){
 
 
 
+
+
   //Declaring Clone Variables
     const cloneBookHtml = bookHtml.cloneNode(true);
   
@@ -71,6 +80,8 @@ function addBookToLibrary(tempBook){
     const cloneBookAuthorP = bookAuthorP.cloneNode(true);
   
     const cloneBookPagesP = bookPagesP.cloneNode(true);
+
+    const cloneBookReadCheckbox = bookReadCheckbox.cloneNode(true);
   
     const cloneBookReadP = bookReadP.cloneNode(true);
 
@@ -92,12 +103,29 @@ function addBookToLibrary(tempBook){
     cloneBookHtml.appendChild(cloneBookPagesP);
   
     cloneBookPagesP.textContent = tempBook.pages;
+
+    cloneBookHtml.appendChild(cloneBookReadCheckbox);
   
     cloneBookHtml.appendChild(cloneBookReadP);
+    tempBook.readStatus = readOrNot(tempBook.readStatus, cloneBookReadCheckbox)
   
-    cloneBookReadP.textContent = readOrNot(tempBook.readStatus)
+    cloneBookReadP.textContent = tempBook.readStatus;
 
 
+
+
+
+    //When Checkbox is clicked the text will change using the prototype
+    cloneBookReadCheckbox.addEventListener("change", function(){    
+      if(cloneBookReadCheckbox.checked){
+        tempBook.readStatus = "Read"
+        cloneBookReadP.innerText = tempBook.readStatus;
+      }
+      else{
+        tempBook.readStatus = "Not Read"
+        cloneBookReadP.innerText = tempBook.readStatus;
+      }
+    });
 
     //Adding Id
     cloneBookHtml.setAttribute("id", idBookNumber);
@@ -118,7 +146,18 @@ function addBookToLibrary(tempBook){
     })
   }
 
-
+          // //Prototype function that changes read status
+          // Book.prototype.changeReadStatus = function(){
+          //   if (this.readStatus === "on"){
+          //     this.readStatus = "Read"
+          //     return this.readStatus;
+          //   }
+        
+          //   else {
+          //     return "Not Read"
+          //   }
+          // }
+      
 
 
 //Dialong and Modal Code 
