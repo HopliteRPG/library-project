@@ -158,17 +158,6 @@ function addBookToLibrary(tempBook){
     })
   }
 
-          // //Prototype function that changes read status
-          // Book.prototype.changeReadStatus = function(){
-          //   if (this.readStatus === "on"){
-          //     this.readStatus = "Read"
-          //     return this.readStatus;
-          //   }
-        
-          //   else {
-          //     return "Not Read"
-          //   }
-          // }
       
 
 
