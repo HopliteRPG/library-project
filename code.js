@@ -16,6 +16,9 @@ bookAuthorP.classList.add("bookAuthorP");
 const bookPagesP = document.createElement("p");
 bookPagesP.classList.add("bookPagesP");
 
+const bookReadCheckboxDiv = document.createElement("div");
+bookReadCheckboxDiv.classList.add("bookReadCheckboxDiv");
+
 const bookReadCheckbox = document.createElement("input");
 bookReadCheckbox.setAttribute("type", "checkbox");
 bookReadCheckbox.classList.add("bookReadCheckbox");
@@ -83,6 +86,8 @@ function addBookToLibrary(tempBook){
     const cloneBookPagesP = bookPagesP.cloneNode(true);
 
     const cloneBookReadCheckbox = bookReadCheckbox.cloneNode(true);
+
+    const cloneBookReadCheckboxDiv = bookReadCheckboxDiv.cloneNode(true);
   
     const cloneBookReadP = bookReadP.cloneNode(true);
 
@@ -105,9 +110,11 @@ function addBookToLibrary(tempBook){
   
     cloneBookPagesP.textContent = `Page Count: ${tempBook.pages}`;
 
-    cloneBookHtml.appendChild(cloneBookReadCheckbox);
+    cloneBookHtml.appendChild(cloneBookReadCheckboxDiv);
+
+    cloneBookReadCheckboxDiv.appendChild(cloneBookReadCheckbox);
   
-    cloneBookHtml.appendChild(cloneBookReadP);
+    cloneBookReadCheckboxDiv.appendChild(cloneBookReadP);
     tempBook.readStatus = readOrNot(tempBook.readStatus, cloneBookReadCheckbox)
   
     cloneBookReadP.textContent = tempBook.readStatus;

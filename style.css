@@ -33,6 +33,11 @@ html, body {
 
 }
 
+.bookReadCheckboxDiv{
+  display: flex;
+  flex-direction: row;
+}
+
 
 .delete-book-button{
   background-color: lightblue;
