@@ -95,15 +95,15 @@ function addBookToLibrary(tempBook){
   
     cloneBookHtml.appendChild(cloneBookNameP);
   
-    cloneBookNameP.textContent = tempBook.title;
+    cloneBookNameP.textContent = `Book: ${tempBook.title}`;
   
     cloneBookHtml.appendChild(cloneBookAuthorP);
   
-    cloneBookAuthorP.textContent = tempBook.author;
+    cloneBookAuthorP.textContent = `Author: ${tempBook.author}`;
   
     cloneBookHtml.appendChild(cloneBookPagesP);
   
-    cloneBookPagesP.textContent = tempBook.pages;
+    cloneBookPagesP.textContent = `Page Count: ${tempBook.pages}`;
 
     cloneBookHtml.appendChild(cloneBookReadCheckbox);
   
@@ -139,7 +139,7 @@ function addBookToLibrary(tempBook){
 
     //Delete button 
     cloneBookHtml.appendChild(cloneDeleteBookButton);
-    cloneDeleteBookButton.innerText = "Clone Delete";
+    cloneDeleteBookButton.innerText = "Delete";
     cloneDeleteBookButton.classList.add("delete-book-button");
 
     cloneDeleteBookButton.addEventListener("click", () =>{
