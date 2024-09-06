@@ -26,6 +26,10 @@ html, body {
 /* Book CSS */
 
 .book-div{
+  display: flex;
+  flex-direction: column;
+  border-color: black;
+  border: 2px solid;
 
 }
 
