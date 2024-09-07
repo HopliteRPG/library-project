@@ -19,8 +19,14 @@ html, body {
 
 .bottom-main-div{
   height: 50%;
+  display: flex;
+  justify-content: center;
 }
 
+.show-dialog-btn{
+  height: 20%;
+  width: 30%;
+}
 
 
 /* Book CSS */
