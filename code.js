@@ -50,7 +50,7 @@ function Book(title,author,pages,readStatus,id){
     this.id = id;
 }
 
-//If its on it displays Read if not it displays Not Read
+//If its on it displays Read if not it displays Not Read (Modal)
 function readOrNot(readStatus,cloneBookReadCheckbox){
     if (readStatus === "on"){
       cloneBookReadCheckbox.checked = true;
@@ -125,7 +125,7 @@ function addBookToLibrary(tempBook){
 
 
 
-    //When Checkbox is clicked the text will change using the prototype
+    //When Checkbox is clicked the text will change (clonebook)
     cloneBookReadCheckbox.addEventListener("change", function(){    
       if(cloneBookReadCheckbox.checked){
         tempBook.readStatus = "Read"
