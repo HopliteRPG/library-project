@@ -57,6 +57,11 @@ function readOrNot(readStatus,cloneBookReadCheckbox){
       return "Read"
     }
 
+    else if(readStatus === "Read"){
+      cloneBookReadCheckbox.checked = true;
+      return "Read"
+    }
+
     else {
       return "Not Read"
     }
@@ -94,54 +99,67 @@ function addBookToLibrary(tempBook){
     const cloneDeleteBookButton = deleteBookButton.cloneNode(true);
 
     
+    myLibrary.forEach(book => {
+      if(book.id === undefined){
+          //Adds clone book and clone variables to topMainDiv
+          topMainDiv.appendChild(cloneBookHtml);
+      
+          cloneBookHtml.appendChild(cloneBookNameP);
+        
+          cloneBookNameP.textContent = `Book: ${book.title}`;
+        
+          cloneBookHtml.appendChild(cloneBookAuthorP);
+        
+          cloneBookAuthorP.textContent = `Author: ${book.author}`;
+        
+          cloneBookHtml.appendChild(cloneBookPagesP);
+        
+          cloneBookPagesP.textContent = `Page Count: ${book.pages}`;
   
-  //Adds clone book and clone variables to topMainDiv
-    topMainDiv.appendChild(cloneBookHtml);
+          cloneBookHtml.appendChild(cloneBookReadCheckboxDiv);
   
-    cloneBookHtml.appendChild(cloneBookNameP);
+          cloneBookReadCheckboxDiv.appendChild(cloneBookReadCheckbox);
+        
+          cloneBookReadCheckboxDiv.appendChild(cloneBookReadP);
+          book.readStatus = readOrNot(book.readStatus, cloneBookReadCheckbox)
+        
+          cloneBookReadP.textContent = book.readStatus;
   
-    cloneBookNameP.textContent = `Book: ${tempBook.title}`;
-  
-    cloneBookHtml.appendChild(cloneBookAuthorP);
-  
-    cloneBookAuthorP.textContent = `Author: ${tempBook.author}`;
-  
-    cloneBookHtml.appendChild(cloneBookPagesP);
-  
-    cloneBookPagesP.textContent = `Page Count: ${tempBook.pages}`;
+          book.id = idBookNumber;
 
-    cloneBookHtml.appendChild(cloneBookReadCheckboxDiv);
-
-    cloneBookReadCheckboxDiv.appendChild(cloneBookReadCheckbox);
+          //Adding Id
+          cloneBookHtml.setAttribute("id", idBookNumber);
+          idBookNumber++;
+            
+          console.log(cloneBookHtml.id)
   
-    cloneBookReadCheckboxDiv.appendChild(cloneBookReadP);
-    tempBook.readStatus = readOrNot(tempBook.readStatus, cloneBookReadCheckbox)
-  
-    cloneBookReadP.textContent = tempBook.readStatus;
 
-    tempBook.id = idBookNumber;
+      };
 
-
-
-
-
-    //When Checkbox is clicked the text will change (clonebook)
-    cloneBookReadCheckbox.addEventListener("change", function(){    
-      if(cloneBookReadCheckbox.checked){
-        tempBook.readStatus = "Read"
-        cloneBookReadP.innerText = tempBook.readStatus;
-      }
-      else{
-        tempBook.readStatus = "Not Read"
-        cloneBookReadP.innerText = tempBook.readStatus;
-      }
+              //When Checkbox is clicked the text will change (clonebook)
+              cloneBookReadCheckbox.addEventListener("change", function(){    
+                if(cloneBookReadCheckbox.checked){
+                  book.readStatus = "Read"
+                  cloneBookReadP.innerText = book.readStatus;
+                }
+                else{
+                  book.readStatus = "Not Read"
+                  cloneBookReadP.innerText = book.readStatus;
+                }
+      })
+      
+     
     });
+  
+ 
 
-    //Adding Id
-    cloneBookHtml.setAttribute("id", idBookNumber);
-    idBookNumber++;
 
-    console.log(cloneBookHtml.id)
+
+
+
+
+
+
 
 
     //Delete button 
