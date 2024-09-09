@@ -206,6 +206,7 @@ function addBookToLibrary(tempBook){
     event.preventDefault();
     const formData = new FormData(form);
     addBookToLibrary(new Book(formData.get("book_name"),formData.get("author_name"),formData.get("pages_number"),formData.get("read_status")));
+    form.reset();
     dialog.close();
   });
   
