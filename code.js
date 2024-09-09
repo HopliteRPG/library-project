@@ -173,7 +173,7 @@ function addBookToLibrary(tempBook){
       tempIdHolder.remove();
 
       const indexOfBook = myLibrary.findIndex(book => {
-        return book.id === cloneBookHtml.id;
+        return book.id == cloneBookHtml.id;
       });
 
       myLibrary.splice(indexOfBook, 1)
