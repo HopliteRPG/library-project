@@ -74,6 +74,7 @@ function addBookToLibrary(tempBook){
   
   //Adding tempBookObj to array
   myLibrary.push(tempBook);
+  console.log("pushArray")
   console.log(myLibrary);
 
 
@@ -131,25 +132,37 @@ function addBookToLibrary(tempBook){
           cloneBookHtml.setAttribute("id", idBookNumber);
           idBookNumber++;
             
-          console.log(cloneBookHtml.id)
   
 
       };
 
-              //When Checkbox is clicked the text will change (clonebook)
-              cloneBookReadCheckbox.addEventListener("change", function(){    
-                if(cloneBookReadCheckbox.checked){
-                  book.readStatus = "Read"
-                  cloneBookReadP.innerText = book.readStatus;
-                }
-                else{
-                  book.readStatus = "Not Read"
-                  cloneBookReadP.innerText = book.readStatus;
-                }
-      })
+              
       
      
     });
+
+
+
+
+    //When Checkbox is clicked the text will change (clonebook)
+    cloneBookReadCheckbox.addEventListener("change", function(){
+      const indexOfBook = myLibrary.findIndex(book => {
+        return book.id == cloneBookHtml.id;
+      });
+      let tempBook = myLibrary[indexOfBook];    
+      if(cloneBookReadCheckbox.checked){
+        tempBook.readStatus = "Read"
+        cloneBookReadP.innerText = tempBook.readStatus;
+        console.log("clonebook check")
+        console.log(myLibrary)
+      }
+      else{
+        tempBook.readStatus = "Not Read"
+        cloneBookReadP.innerText = tempBook.readStatus;
+        console.log("clonebook uncheck")
+        console.log(myLibrary)
+      }
+})
   
  
 
@@ -169,7 +182,6 @@ function addBookToLibrary(tempBook){
 
     cloneDeleteBookButton.addEventListener("click", () =>{
       let tempIdHolder = document.getElementById(cloneBookHtml.id)
-      console.log(cloneBookHtml.id)
       tempIdHolder.remove();
 
       const indexOfBook = myLibrary.findIndex(book => {
@@ -177,7 +189,7 @@ function addBookToLibrary(tempBook){
       });
 
       myLibrary.splice(indexOfBook, 1)
-
+      console.log("delete")
       console.log(myLibrary)
 
     })
